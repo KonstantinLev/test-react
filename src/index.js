@@ -1,14 +1,24 @@
 /**
  * Created by Konstantin on 17.05.2017.
  */
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var $ = require('jquery');
-var str = require('./constant');
-require('./less');
+class App extends React.Component
+{
+    render() {
+        return (
+            <div>
+                <h1>Its Working!</h1>
+                <h3>Какой-то текст</h3>
+            </div>
 
-var App = function() {
-    $('body').html('<div class="b-test"><h3 class="b-test__heading">Heading</h3></div>');
-};
+        );
+    }
 
-var app = new App();
-app.get = function() {};
+}
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);
