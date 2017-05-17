@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/KonstantinLev/test-react/issues"
   },
-  "homepage": "https://github.com/KonstantinLev/test-react#readme"
+  "homepage": "https://github.com/KonstantinLev/test-react#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
 }
