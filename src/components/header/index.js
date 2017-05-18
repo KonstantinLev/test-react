@@ -2,6 +2,7 @@
  * Created by Konstantin on 18.05.2017.
  */
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class Header extends React.Component
 {
@@ -14,6 +15,11 @@ export default class Header extends React.Component
                     <div className="navbar-header">
                         <a className="navbar-brand" href="#">Brand</a>
                     </div>
+                    <ul className="nav navbar-nav">
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/contacts">ErrorPage</Link></li>
+                    </ul>
                 </div>
             </nav>
         );
