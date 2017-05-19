@@ -7,7 +7,7 @@ export const DELETE_TODO = 'DELETE_TODO';
 
 export function addTodo(id, name)
 {
-    console.log('Action creator: ', id, name);
+    //console.log('Action creator: ', id, name);
     let error = '';
     if (!name) error = 'Необходимо ввести название!';
     return {

@@ -63,7 +63,7 @@ class HomePage extends React.Component
 
     likeTodo(todo)
     {
-        console.log('Like: ', todo);
+        //console.log('Like: ', todo);
         this.props.dispatch(likeTodo(todo));
     }
 
@@ -73,7 +73,7 @@ class HomePage extends React.Component
     }
 
     render() {
-        console.log('Home state: ', this.props);
+        //console.log('Home state: ', this.props);
         const { todoName } = this.state;
         const { todos, error } = this.props.home;
         return (
