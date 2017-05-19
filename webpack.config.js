@@ -5,6 +5,13 @@ const path = require('path');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
+    node: {
+        net: "empty",
+        tls: "empty",
+        dns: "empty",
+        "pg-native": "empty",
+        fs: "empty"
+    },
     entry: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/dev-server',
@@ -48,6 +55,9 @@ module.exports = {
         historyApiFallback: true
     },
     module: {
+        preLoaders: [
+            { test: /\.json$/, exclude: /node_modules/, loader: 'json-loader'},
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -65,6 +75,7 @@ module.exports = {
                 '!autoprefixer-loader?browsers=last 2 version' +
                 '!less?sourceMap=source-map-less-inline'
             },
+            { test: /\.json$/, loader: "json-loader" },
             {
                 test: /\.(png|jpg|svg|gif)$/,
                 loader: 'file?name=img/[path][name].[ext]'
