@@ -32,10 +32,7 @@ class HomePage extends React.Component
         };
 
         bindAll(this, ['renderTodos', 'inputOnChange', 'addTodo']);
-    }
 
-    componentWillMount()
-    {
         this.props.dispatch( getTodos() );
     }
 
@@ -46,13 +43,7 @@ class HomePage extends React.Component
 
     addTodo()
     {
-        //создаем массив todos
-        const { todos } = this.props.home;
-
-        const id = todos[todos.length - 1].id + 1;
-        const name = this.state.todoName;
-
-        this.props.dispatch(addTodo(id, name));
+        this.props.dispatch(addTodo(this.props.home.todos, this.state.todoName));
         this.setState({ todoName: ''});
     }
 
@@ -86,18 +77,19 @@ class HomePage extends React.Component
 
     render() {
         //console.log('Home state: ', this.props);
-        //this.props.dispatch(saveTodos(this.props.home.todos));
         console.log('Home state: ', this.props);
         const { todoName } = this.state;
-        const { todos, error } = this.props.home;
+        const { todos, error, isLoading } = this.props.home;
         LS.set('todos', todos);
         return (
             <div className='row-fluid b-home'>
                 <div className='col-xs-12'>
                     <ul>
-                        {
-                            todos.length === 0 ? <Loader /> :
-                            todos.map(this.renderTodos)
+                        { isLoading
+                            ? <Loader />
+                            : todos.length !== 0
+                                ? todos.map(this.renderTodos)
+                                : 'Элементов нет'
                         }
                     </ul>
                     <div className='col-xs-4'>
@@ -112,11 +104,6 @@ class HomePage extends React.Component
             </div>
         );
     }
-
-    // componentWillUnmount()
-    // {
-    //     this.props.dispatch(saveTodos(this.props.home.todos));
-    // }
 }
 /**
  * Стд функция, нужна для метода connect
