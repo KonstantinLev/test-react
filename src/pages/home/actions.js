@@ -1,37 +1,49 @@
 /**
- * Created by Konstantin on 18.05.2017.
+ * Created by Konstantin on 21.05.2017.
  */
+import { LS, delay } from '../../utils/index';
+
 export const ADD_TODO = 'ADD_TODO';
 export const LIKE_TODO = 'LIKE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
+export const GET_TODOS = 'GET_TODOS';
 
-export function addTodo(id, name)
-{
-    //console.log('Action creator: ', id, name);
+export function addTodo(id, name) {
     let error = '';
-    if (!name) error = 'Необходимо ввести название!';
+    if (!name) {
+        error = 'Необходимо ввести название';
+    }
     return {
         type: ADD_TODO,
-        id,
-        name,
-        error
-    }
+        id, name, error
+    };
 }
 
-export function likeTodo(todo)
-{
+export function likeTodo(todo) {
     const liked = !todo.liked;
+
     return {
         type: LIKE_TODO,
         todo, liked
     };
 }
 
-export function deleteTodo(todo)
-{
+export function deleteTodo(todo) {
     return {
         type: DELETE_TODO,
         todo
     };
 }
 
+export function getTodos() {
+    const todos = LS.get('todos');
+
+    return (dispatch) => {
+        delay(4000).then(() => {
+            dispatch({
+                type: GET_TODOS,
+                todos
+            });
+        });
+    };
+}
